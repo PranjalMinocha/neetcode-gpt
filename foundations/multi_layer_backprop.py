@@ -15,18 +15,9 @@ class Solution:
         np_b2 = np.array(b2)
         np_y_true = np.array(y_true)
 
-        print(np_x.shape)
-        print(np_W1.shape)
-        print(np_b1.shape)
-        print(np_W2.shape)
-        print(np_b2.shape)
-        print(np_y_true.shape)
-
         # Architecture: x -> Linear(W1, b1) -> ReLU -> Linear(W2, b2) -> predictions
         z1 = np.dot(np_x, np_W1.T) + np_b1
         a1 = np.maximum(z1, 0)
-
-        print(a1)
 
         y_hat = np.dot(a1, np_W2.T) + np_b2
         # Loss: MSE = mean((predictions - y_true)^2)
@@ -37,7 +28,6 @@ class Solution:
         dW2 = np.dot(db2.reshape((-1, 1)), a1.reshape((1, -1)))
         
         da1 = np.dot(db2, np_W2)
-        print(da1.shape)
 
         db1 = da1*(z1>0)
         dW1 = np.dot(db1.reshape((-1, 1)), np_x.reshape((1, -1)))
