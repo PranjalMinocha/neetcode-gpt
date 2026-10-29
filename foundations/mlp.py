@@ -15,4 +15,4 @@ class Solution:
             z = np.dot(curr, w) + b
             curr = np.maximum(z, 0)
 
-        return z[0]
+        return np.round(z[0], 5)
